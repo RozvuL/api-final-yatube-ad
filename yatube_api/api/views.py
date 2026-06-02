@@ -13,7 +13,6 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsAuthorOrReadOnly]
-    pagination_class = None
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
