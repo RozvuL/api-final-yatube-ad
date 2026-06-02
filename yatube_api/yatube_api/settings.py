@@ -1,6 +1,7 @@
 """Django settings for yatube project."""
 
 from pathlib import Path
+from datetime import timedelta  # <-- ПЕРЕНЕСИ СЮДА
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -120,8 +121,6 @@ REST_FRAMEWORK = {
 }
 
 # JWT settings
-from datetime import timedelta
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer',),
