@@ -40,7 +40,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'yatube_api.urls'  # <-- ИСПРАВЛЕНО
+ROOT_URLCONF = 'yatube_api.urls'
 TEMPLATES_DIR = BASE_DIR / 'templates'
 TEMPLATES = [
     {
@@ -58,7 +58,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'yatube_api.wsgi.application'  # <-- ИСПРАВЛЕНО
+WSGI_APPLICATION = 'yatube_api.wsgi.application'
 
 
 # Database
