@@ -1,7 +1,7 @@
 """Django settings for yatube project."""
 
 from pathlib import Path
-from datetime import timedelta  # <-- ПЕРЕНЕСИ СЮДА
+from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,7 +40,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'youtube_api.urls'
+ROOT_URLCONF = 'yatube_api.urls'  # <-- ИСПРАВЛЕНО
 TEMPLATES_DIR = BASE_DIR / 'templates'
 TEMPLATES = [
     {
@@ -58,7 +58,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'youtube_api.wsgi.application'
+WSGI_APPLICATION = 'yatube_api.wsgi.application'  # <-- ИСПРАВЛЕНО
 
 
 # Database
