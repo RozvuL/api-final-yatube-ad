@@ -1,5 +1,7 @@
 from rest_framework import viewsets, mixins, filters
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
 from django.shortcuts import get_object_or_404
 
 from posts.models import Post, Group, Follow
@@ -9,10 +11,24 @@ from .serializers import (
 from .permissions import IsAuthorOrReadOnly
 
 
+class CustomPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'limit'
+    page_query_param = 'offset'
+
+
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsAuthorOrReadOnly]
+    pagination_class = CustomPagination
+
+    def list(self, request, *args, **kwargs):
+        if request.query_params.get('limit') or request.query_params.get('offset'):
+            return super().list(request, *args, **kwargs)
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
