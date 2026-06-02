@@ -24,7 +24,8 @@ class PostViewSet(viewsets.ModelViewSet):
     pagination_class = CustomPagination
 
     def list(self, request, *args, **kwargs):
-        if request.query_params.get('limit') or request.query_params.get('offset'):
+        if (request.query_params.get('limit') or
+                request.query_params.get('offset')):
             return super().list(request, *args, **kwargs)
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
@@ -71,4 +72,3 @@ class FollowViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
