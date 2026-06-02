@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'djoser',
     'rest_framework_simplejwt',
     'posts.apps.PostsConfig',
     'api',
@@ -122,12 +121,6 @@ REST_FRAMEWORK = {
 }
 
 # JWT settings
-DJOSER = {
-    'SERIALIZERS': {
-        'token_create': 'rest_framework_simplejwt.serializers.TokenObtainPairSerializer',
-    },
-}
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
